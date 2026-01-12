@@ -24,7 +24,6 @@ public class LoginController {
     @FXML
     private Label lblError;
 
-    // Se llama automáticamente al inicializar el controlador
     @FXML
     private void initialize() {
         // Permitir presionar Enter en el campo de contraseña

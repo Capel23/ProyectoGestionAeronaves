@@ -1,14 +1,12 @@
-/* App-wide styles */
+
 .root {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* Background gradient for scenes */
 .scene-background {
     -fx-background-color: linear-gradient(to bottom, #0f1724 0%, #10233b 100%);
 }
 
-/* Login box */
 .login-box {
     -fx-background-color: rgba(255,255,255,0.92);
     -fx-padding: 28 30 28 30;
@@ -29,14 +27,12 @@
     -fx-text-fill: #12314b;
 }
 
-/* Inputs */
 .text-field, .password-field {
     -fx-background-radius: 6;
     -fx-border-radius: 6;
     -fx-padding: 8 10 8 10;
 }
 
-/* Buttons */
 .button {
     -fx-background-color: linear-gradient(#2c7be5, #1b6fd4);
     -fx-text-fill: white;
@@ -51,7 +47,6 @@
     -fx-effect: dropshadow(energy, rgba(41,128,185,0.35), 6, 0, 0, 2);
 }
 
-/* Table styling */
 .table-view {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
@@ -64,12 +59,10 @@
     -fx-background-color: rgba(44,123,229,0.12);
 }
 
-/* Footer text */
 .footer-label {
     -fx-text-fill: rgba(255,255,255,0.8);
 }
 
-/* Error label */
 .error-label {
     -fx-text-fill: #d9534f;
     -fx-font-weight: bold;
