@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.aeronautica.controller.MainController" styleClass="scene-background">
+
+    <!-- Cabecera -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="header">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Gestión de Aeronaves" styleClass="brand-title"/>
+        </HBox>
+    </top>
+
+    <!-- Contenido central: TableView -->
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <TableView fx:id="tableAeronaves" prefHeight="400" prefWidth="700">
+                <columns>
+                    <TableColumn fx:id="colMatricula" text="Matrícula" prefWidth="150" />
+                    <TableColumn fx:id="colModelo" text="Modelo" prefWidth="350" />
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="200" />
+                </columns>
+            </TableView>
+            <Button text="Refrescar" onAction="#refrescarTabla" />
+        </VBox>
+    </center>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Aerolínea de ejemplo - Sistema de Mantenimiento" styleClass="footer-label"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
