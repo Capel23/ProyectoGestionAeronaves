@@ -1,10 +1,25 @@
 package com.aeronautica.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "aeronaves")
 public class Aeronave {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
     private String matricula;
+
+    @Column(nullable = false)
     private String modelo;
+
+    @Column(nullable = false)
     private String estado;
+
+    public Aeronave() {}
 
     public Aeronave(String matricula, String modelo, String estado) {
         this.matricula = matricula;
@@ -12,7 +27,15 @@ public class Aeronave {
         this.estado = estado;
     }
 
-    // Getters y setters
+    // ===== GETTERS Y SETTERS =====
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMatricula() {
         return matricula;
     }

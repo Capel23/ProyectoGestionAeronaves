@@ -1,20 +1,24 @@
 package com.aeronautica.dao;
 
 import com.aeronautica.model.Usuario;
-import com.aeronautica.util.HibernateUtil;
+import com.aeronautica.config.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 public class UsuarioDAO {
 
     public Usuario buscarPorUsername(String username) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Usuario> query = session.createQuery(
-                    "FROM Usuario u WHERE u.username = :username AND u.activo = true",
-                    Usuario.class
-            );
-            query.setParameter("username", username);
-            return query.uniqueResult();
+            return session.createQuery("FROM Usuario WHERE username = :username", Usuario.class)
+                    .setParameter("username", username)
+                    .uniqueResult();
+        }
+    }
+
+    public void guardar(Usuario usuario) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.saveOrUpdate(usuario);
+            session.getTransaction().commit();
         }
     }
 }

@@ -28,9 +28,10 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        // Permitir pulsar Enter en el password
         txtPass.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                login(null);
+                login(new ActionEvent(txtPass, null));
             }
         });
     }
@@ -44,7 +45,7 @@ public class LoginController {
             Usuario usuario = authService.login(user, pass);
 
             if (usuario != null) {
-                cargarPantallaPrincipal(usuario, event);
+                cargarPantallaPrincipal(usuario);
             } else {
                 lblError.setText("Usuario o contraseña incorrectos");
             }
@@ -54,16 +55,15 @@ public class LoginController {
         }
     }
 
-    private void cargarPantallaPrincipal(Usuario usuario, ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/main.fxml")
-        );
+    private void cargarPantallaPrincipal(Usuario usuario) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(loader.load());
 
+        // Pasamos el usuario al MainController para control de roles
         MainController controller = loader.getController();
         controller.setUsuario(usuario);
 
-        Stage stage = (Stage) ((Node) txtUser).getScene().getWindow();
+        Stage stage = (Stage) txtUser.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Sistema - " + usuario.getRol());
         stage.show();
