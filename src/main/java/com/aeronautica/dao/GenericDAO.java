@@ -1,14 +1,15 @@
 package com.aeronautica.dao;
 
-import com.aeronautica.config.HibernateUtil;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
+import com.aeronautica.config.HibernateUtil;
 
 public class GenericDAO<T> {
 
-    private Class<T> entityClass;
+    private final Class<T> entityClass;
 
     public GenericDAO(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -22,7 +23,7 @@ public class GenericDAO<T> {
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            e.printStackTrace();
+            System.err.println("Error saving entity: " + e.getMessage());
         }
     }
 
@@ -34,7 +35,7 @@ public class GenericDAO<T> {
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            e.printStackTrace();
+            System.err.println("Error updating entity: " + e.getMessage());
         }
     }
 
@@ -46,7 +47,7 @@ public class GenericDAO<T> {
 
     public List<T> findAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from " + entityClass.getSimpleName(), entityClass).list();
+            return session.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
         }
     }
 
@@ -58,7 +59,7 @@ public class GenericDAO<T> {
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            e.printStackTrace();
+            System.err.println("Error deleting entity: " + e.getMessage());
         }
     }
 }

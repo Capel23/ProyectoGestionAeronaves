@@ -53,7 +53,7 @@ public class LoginController {
             }
         } catch (Exception e) {
             lblError.setText("Error de conexión con la base de datos");
-            e.printStackTrace();
+            System.err.println("Error en login: " + e.getMessage());
         }
     }
 

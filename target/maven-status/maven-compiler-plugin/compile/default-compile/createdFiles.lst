@@ -1,0 +1,16 @@
+com\aeronautica\dao\UsuarioDAO.class
+com\aeronautica\config\HibernateUtil.class
+com\aeronautica\model\Usuario.class
+com\aeronautica\model\Pieza.class
+com\aeronautica\model\Rol.class
+com\aeronautica\service\AeronaveService.class
+com\aeronautica\Main.class
+com\aeronautica\model\Aeronave.class
+com\aeronautica\model\Mecanico.class
+com\aeronautica\model\Revision.class
+com\aeronautica\controller\LoginController.class
+com\aeronautica\dao\AeronaveDAO.class
+com\aeronautica\service\UsuarioService.class
+com\aeronautica\controller\MainController.class
+com\aeronautica\service\AuthService.class
+com\aeronautica\dao\GenericDAO.class

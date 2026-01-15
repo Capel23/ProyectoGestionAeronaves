@@ -1,11 +1,12 @@
 package com.aeronautica.dao;
 
-import com.aeronautica.model.Aeronave;
-import com.aeronautica.config.HibernateUtil;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
+import com.aeronautica.config.HibernateUtil;
+import com.aeronautica.model.Aeronave;
 
 public class AeronaveDAO {
 
@@ -13,11 +14,11 @@ public class AeronaveDAO {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            session.saveOrUpdate(aeronave);
+            session.merge(aeronave);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            e.printStackTrace();
+            System.err.println("Error guardando aeronave: " + e.getMessage());
         }
     }
 
@@ -25,17 +26,17 @@ public class AeronaveDAO {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            session.delete(aeronave);
+            session.remove(aeronave);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            e.printStackTrace();
+            System.err.println("Error eliminando aeronave: " + e.getMessage());
         }
     }
 
     public List<Aeronave> listarTodas() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Aeronave", Aeronave.class).list();
+            return session.createQuery("FROM Aeronave", Aeronave.class).getResultList();
         }
     }
 }

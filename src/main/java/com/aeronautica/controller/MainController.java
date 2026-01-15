@@ -3,10 +3,13 @@ package com.aeronautica.controller;
 import com.aeronautica.model.Aeronave;
 import com.aeronautica.model.Usuario;
 import com.aeronautica.service.AeronaveService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class MainController {
@@ -23,7 +26,7 @@ public class MainController {
     @FXML
     private TextField txtMatricula, txtModelo, txtEstado;
 
-    private AeronaveService service = new AeronaveService();
+    private final AeronaveService service = new AeronaveService();
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
