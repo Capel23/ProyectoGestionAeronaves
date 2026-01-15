@@ -9,7 +9,7 @@
         <!-- Conexión a MySQL -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/aeronautica_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+            jdbc:mysql://localhost:3306/aeronautica_db?useSSL=false&serverTimezone=UTC
         </property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"> </property>
@@ -32,6 +32,8 @@
         <mapping class="com.aeronautica.model.Mecanico"/>
         <mapping class="com.aeronautica.model.Pieza"/>
         <mapping class="com.aeronautica.model.Revision"/>
+        <mapping class="com.aeronautica.model.Usuario"/>
+
 
     </session-factory>
 </hibernate-configuration>
