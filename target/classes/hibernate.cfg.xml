@@ -8,7 +8,10 @@
 
         <!-- Conexión a MySQL -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aeronautica_db</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3307/aeronautica_db?useSSL=false&serverTimezone=UTC
+        </property>
+
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"> </property>
 
@@ -20,9 +23,11 @@
         <property name="hibernate.format_sql">true</property>
 
         <!-- Gestión de esquema -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property>  -->
 
-        <!-- Caching opcional -->
+
+         <!-- Caching opcional -->
         <property name="hibernate.cache.use_second_level_cache">false</property>
 
         <!-- Entidades -->
