@@ -4,23 +4,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.aeronautica.controller.LoginController"
-           styleClass="scene-background"
-           alignment="CENTER">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aeronautica.controller.LoginController"
+      spacing="10" alignment="CENTER">
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <VBox spacing="12" alignment="CENTER" styleClass="login-box">
-        <Label text="Sistema de Gestión de Aeronaves" styleClass="brand-title" />
+    <Label text="Sistema de Gestión de Aeronaves" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-        <TextField fx:id="txtUser" promptText="Usuario" />
-        <PasswordField fx:id="txtPass" promptText="Contraseña" />
-        <Button text="Iniciar Sesión" onAction="#login" />
+    <TextField fx:id="txtUser" promptText="Usuario" />
+    <PasswordField fx:id="txtPass" promptText="Contraseña" />
+    <Button text="Iniciar Sesión" onAction="#login" />
 
-        <Label fx:id="lblError" styleClass="error-label" />
-    </VBox>
+    <Label fx:id="lblError" textFill="red" />
 
-</StackPane>
+</VBox>

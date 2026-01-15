@@ -5,51 +5,49 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.aeronautica.controller.MainController" styleClass="scene-background">
+            fx:controller="com.aeronautica.controller.MainController">
 
     <!-- Cabecera -->
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="header">
+        <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Gestión de Aeronaves" styleClass="brand-title"/>
+            <Label text="Gestión de Aeronaves" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
         </HBox>
     </top>
 
     <!-- Contenido central: TableView -->
     <center>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
             <TableView fx:id="tableAeronaves" prefHeight="400" prefWidth="600">
                 <columns>
                     <TableColumn fx:id="colMatricula" text="Matrícula" prefWidth="150"/>
-                    <TableColumn fx:id="colModelo" text="Modelo" prefWidth="450"/>
-                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="300"/>
+                    <TableColumn fx:id="colModelo" text="Modelo" prefWidth="250"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="200"/>
                 </columns>
             </TableView>
 
             <HBox spacing="10">
-                <TextField fx:id="txtMatricula" promptText="Matrícula"/>
-                <TextField fx:id="txtModelo" promptText="Modelo"/>
-                <TextField fx:id="txtEstado" promptText="Estado"/>
-            </HBox>
-
-            <HBox spacing="10">
+                <Button text="Refrescar" onAction="#refrescarTabla"/>
                 <Button text="Guardar" onAction="#guardarAeronave"/>
                 <Button text="Eliminar" onAction="#eliminarAeronave"/>
-                <Button text="Refrescar" onAction="#refrescarTabla"/>
             </HBox>
-        </VBox>
 
+        </VBox>
     </center>
 
     <!-- Pie de página -->
     <bottom>
-        <HBox alignment="CENTER_RIGHT">
+        <HBox>
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Aerolínea de ejemplo - Sistema de Mantenimiento" styleClass="footer-label"/>
+            <Label text="Aerolínea de ejemplo - Sistema de Mantenimiento"/>
         </HBox>
     </bottom>
 
