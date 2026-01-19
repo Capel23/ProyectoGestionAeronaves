@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.aeronautica.model.Usuario;
 import com.aeronautica.service.AuthService;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,13 +31,13 @@ public class LoginController {
     public void initialize() {
         txtPass.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                login(new ActionEvent(txtPass, null));
+                login();
             }
         });
     }
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login() {
         try {
             String user = txtUser.getText();
             String pass = txtPass.getText();
@@ -49,28 +48,34 @@ public class LoginController {
 
             if (usuario != null) {
                 System.out.println("Login exitoso! Usuario: " + usuario.getUsername() + ", Rol: " + usuario.getRol());
-                cargarPantallaPrincipal(usuario);
+                try {
+                    cargarPantallaPrincipal(usuario);
+                } catch (IOException e) {
+                    lblError.setText("Error al cargar la pantalla principal");
+                    System.err.println("Error cargando pantalla principal: " + e.getMessage());
+                }
             } else {
                 System.out.println("Login fallido: usuario o contraseña incorrectos");
                 lblError.setText("Usuario o contraseña incorrectos");
             }
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             lblError.setText("Error de conexión con la base de datos");
             System.err.println("Error en login: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
     private void cargarPantallaPrincipal(Usuario usuario) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
 
         MainController controller = loader.getController();
         controller.setUsuario(usuario);
 
         Stage stage = (Stage) txtUser.getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Sistema - " + usuario.getRol());
+        stage.setTitle("Sistema de Gestión - " + usuario.getRol());
+        stage.setMaximized(false);
         stage.show();
     }
 }

@@ -6,18 +6,26 @@
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.aeronautica.controller.LoginController"
-      spacing="10" alignment="CENTER">
+      spacing="15" alignment="CENTER" prefWidth="450" prefHeight="400">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
 
-    <Label text="Sistema de Gestión de Aeronaves" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label text="Sistema de Gestión de Aeronaves" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Label text="Acceso Seguro" style="-fx-font-size: 14px; -fx-text-fill: #666;" />
 
-    <TextField fx:id="txtUser" promptText="Usuario" />
-    <PasswordField fx:id="txtPass" promptText="Contraseña" />
-    <Button text="Iniciar Sesión" onAction="#login" />
+    <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+        <TextField fx:id="txtUser" promptText="Usuario" prefWidth="300" style="-fx-font-size: 14px;"/>
+        <PasswordField fx:id="txtPass" promptText="Contraseña" prefWidth="300" style="-fx-font-size: 14px;"/>
+        <Button text="Iniciar Sesión" onAction="#login" prefWidth="300" prefHeight="35" style="-fx-font-size: 14px;"/>
+    </VBox>
 
-    <Label fx:id="lblError" textFill="red" />
+    <Label fx:id="lblError" textFill="red" style="-fx-font-size: 12px;"/>
+
+    <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20 0 0 0;">
+        <Label text="Usuarios de prueba:" style="-fx-font-size: 11px; -fx-text-fill: #888;"/>
+        <Label text="admin/admin123 | mecanico/mec123 | piloto/pilot123" style="-fx-font-size: 10px; -fx-text-fill: #999;"/>
+    </VBox>
 
 </VBox>

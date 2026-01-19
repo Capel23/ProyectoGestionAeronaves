@@ -17,6 +17,10 @@ public class AeronaveService {
         dao.eliminar(a);
     }
 
+    public void actualizar(Aeronave a) {
+        dao.actualizar(a);
+    }
+
     public List<Aeronave> listar() {
         return dao.listarTodos();
     }

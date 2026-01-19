@@ -1,15 +1,20 @@
 package com.aeronautica;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.aeronautica.config.HibernateUtil;
-import com.aeronautica.dao.*;
-import com.aeronautica.model.*;
+import com.aeronautica.dao.AeronaveDAO;
+import com.aeronautica.dao.MecanicoDAO;
+import com.aeronautica.dao.PiezaDAO;
+import com.aeronautica.dao.RevisionDAO;
+import com.aeronautica.model.Aeronave;
+import com.aeronautica.model.Mecanico;
+import com.aeronautica.model.Pieza;
+import com.aeronautica.model.Revision;
 import com.aeronautica.service.RevisionService;
 import com.aeronautica.util.CertificadoAeronavegabilidadXMLGenerator;
 import com.aeronautica.util.InventarioPiezasJSONGenerator;
-import org.hibernate.Session;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Aplicación de demostración que muestra todas las funcionalidades del sistema.
