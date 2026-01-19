@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.aeronautica.controller.MainController"
-            prefWidth="1200" prefHeight="700">
+            prefWidth="1600" prefHeight="900">
 
     <top>
         <VBox>

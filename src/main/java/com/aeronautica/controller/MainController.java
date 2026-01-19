@@ -77,9 +77,7 @@ public class MainController {
         colHorasVuelo.setCellValueFactory(new PropertyValueFactory<>("horasVuelo"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colRevisiones.setCellValueFactory(data -> 
-            new javafx.beans.property.SimpleIntegerProperty(
-                data.getValue().getRevisiones() != null ? data.getValue().getRevisiones().size() : 0
-            ).asObject()
+            new javafx.beans.property.SimpleIntegerProperty(0).asObject()
         );
 
         colEstado.setCellFactory(column -> new TableCell<Aeronave, String>() {

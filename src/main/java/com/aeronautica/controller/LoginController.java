@@ -75,7 +75,7 @@ public class LoginController {
         Stage stage = (Stage) txtUser.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Sistema de Gestión - " + usuario.getRol());
-        stage.setMaximized(false);
+        stage.setMaximized(true);
         stage.show();
     }
 }
