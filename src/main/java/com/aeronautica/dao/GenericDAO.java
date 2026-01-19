@@ -21,10 +21,14 @@ public class GenericDAO<T> {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
             session.persist(entity);
+            session.flush();
             tx.commit();
+            System.out.println("Entity saved successfully: " + entity.getClass().getSimpleName());
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             System.err.println("Error saving entity: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Error al guardar: " + e.getMessage(), e);
         }
     }
 

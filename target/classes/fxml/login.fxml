@@ -6,19 +6,20 @@
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.aeronautica.controller.LoginController"
-      spacing="15" alignment="CENTER" prefWidth="500" prefHeight="600">
+      spacing="15" alignment="CENTER" prefWidth="650" prefHeight="700">
 
     <padding>
         <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
 
-    <Label text="Sistema de Gestión de Aeronaves" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    <Label text="Acceso Seguro" style="-fx-font-size: 14px; -fx-text-fill: #666;" />
+    <Label text="Sistema de Gestión de Aeronaves" style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+    <Label text="Acceso Seguro" style="-fx-font-size: 16px; -fx-text-fill: #666;" />
 
-    <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
-        <TextField fx:id="txtUser" promptText="Usuario" prefWidth="300" style="-fx-font-size: 14px;"/>
-        <PasswordField fx:id="txtPass" promptText="Contraseña" prefWidth="300" style="-fx-font-size: 14px;"/>
-        <Button text="Iniciar Sesión" onAction="#login" prefWidth="300" prefHeight="35" style="-fx-font-size: 14px;"/>
+    <VBox spacing="12" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+        <TextField fx:id="txtUser" promptText="Usuario" prefWidth="350" style="-fx-font-size: 15px;"/>
+        <PasswordField fx:id="txtPass" promptText="Contraseña" prefWidth="350" style="-fx-font-size: 15px;"/>
+        <Button text="Iniciar Sesión" onAction="#login" prefWidth="350" prefHeight="40" style="-fx-font-size: 15px; -fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Salir" onAction="#salir" prefWidth="350" prefHeight="40" style="-fx-font-size: 15px; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
     </VBox>
 
     <Label fx:id="lblError" textFill="red" style="-fx-font-size: 12px;"/>

@@ -23,12 +23,12 @@
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-padding: 10;">
             
-            <Tab text="🛩 Aeronaves">
+            <Tab text="🛩 Aeronaves" fx:id="tabAeronaves">
                 <VBox spacing="10" style="-fx-padding: 10;">
                     <HBox spacing="15" style="-fx-background-color: #34495e; -fx-padding: 10; -fx-background-radius: 5;">
-                        <Button text="Nueva Aeronave" onAction="#nuevaAeronave" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
-                        <Button text="Editar" onAction="#editarAeronave" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-                        <Button text="Eliminar" onAction="#eliminarAeronave" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                        <Button fx:id="btnNuevaAeronave" text="Nueva Aeronave" onAction="#nuevaAeronave" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEditarAeronave" text="Editar" onAction="#editarAeronave" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEliminarAeronave" text="Eliminar" onAction="#eliminarAeronave" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
                         <Separator orientation="VERTICAL"/>
                         <Button text="Refrescar" onAction="#refrescarTabla" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
                         <Region HBox.hgrow="ALWAYS"/>
@@ -55,12 +55,12 @@
                 </VBox>
             </Tab>
 
-            <Tab text="👨‍🔧 Mecánicos">
+            <Tab text="👨‍🔧 Mecánicos" fx:id="tabMecanicos">
                 <VBox spacing="10" style="-fx-padding: 10;">
                     <HBox spacing="15" style="-fx-background-color: #34495e; -fx-padding: 10; -fx-background-radius: 5;">
-                        <Button text="Nuevo Mecánico" onAction="#nuevoMecanico" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
-                        <Button text="Editar" onAction="#editarMecanico" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-                        <Button text="Eliminar" onAction="#eliminarMecanico" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                        <Button fx:id="btnNuevoMecanico" text="Nuevo Mecánico" onAction="#nuevoMecanico" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEditarMecanico" text="Editar" onAction="#editarMecanico" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEliminarMecanico" text="Eliminar" onAction="#eliminarMecanico" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
                         <Separator orientation="VERTICAL"/>
                         <Button text="Refrescar" onAction="#refrescarMecanicos" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
                         <Region HBox.hgrow="ALWAYS"/>
@@ -81,15 +81,15 @@
                 </VBox>
             </Tab>
 
-            <Tab text="⚙ Piezas">
+            <Tab text="⚙ Piezas" fx:id="tabPiezas">
                 <VBox spacing="10" style="-fx-padding: 10;">
                     <HBox spacing="15" style="-fx-background-color: #34495e; -fx-padding: 10; -fx-background-radius: 5;">
-                        <Button text="Nueva Pieza" onAction="#nuevaPieza" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
-                        <Button text="Editar" onAction="#editarPieza" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-                        <Button text="Eliminar" onAction="#eliminarPieza" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                        <Button fx:id="btnNuevaPieza" text="Nueva Pieza" onAction="#nuevaPieza" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEditarPieza" text="Editar" onAction="#editarPieza" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEliminarPieza" text="Eliminar" onAction="#eliminarPieza" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
                         <Separator orientation="VERTICAL"/>
                         <Button text="Refrescar" onAction="#refrescarPiezas" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
-                        <Button text="Generar JSON" onAction="#generarInventarioJSON" style="-fx-background-color: #16a085; -fx-text-fill: white;"/>
+                        <Button fx:id="btnGenerarJSON" text="Generar JSON" onAction="#generarInventarioJSON" style="-fx-background-color: #16a085; -fx-text-fill: white;"/>
                         <Region HBox.hgrow="ALWAYS"/>
                         <TextField fx:id="txtBuscarPieza" promptText="Buscar pieza..." prefWidth="250" onKeyReleased="#buscarPieza"/>
                     </HBox>
@@ -111,15 +111,15 @@
                 </VBox>
             </Tab>
 
-            <Tab text="🔧 Revisiones">
+            <Tab text="🔧 Revisiones" fx:id="tabRevisiones">
                 <VBox spacing="10" style="-fx-padding: 10;">
                     <HBox spacing="15" style="-fx-background-color: #34495e; -fx-padding: 10; -fx-background-radius: 5;">
-                        <Button text="Nueva Revisión" onAction="#nuevaRevision" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                        <Button fx:id="btnNuevaRevision" text="Nueva Revisión" onAction="#nuevaRevision" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
                         <Button text="Ver Detalles" onAction="#verDetallesRevision" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-                        <Button text="Eliminar" onAction="#eliminarRevision" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                        <Button fx:id="btnEliminarRevision" text="Eliminar" onAction="#eliminarRevision" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
                         <Separator orientation="VERTICAL"/>
                         <Button text="Refrescar" onAction="#refrescarRevisiones" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
-                        <Button text="Generar Certificado XML" onAction="#generarCertificadoXML" style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
+                        <Button fx:id="btnGenerarCertificado" text="Generar Certificado XML" onAction="#generarCertificadoXML" style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
                         <Region HBox.hgrow="ALWAYS"/>
                     </HBox>
 

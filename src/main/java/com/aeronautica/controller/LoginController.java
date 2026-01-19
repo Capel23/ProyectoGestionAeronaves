@@ -78,4 +78,11 @@ public class LoginController {
         stage.setMaximized(true);
         stage.show();
     }
+
+    @FXML
+    private void salir() {
+        Stage stage = (Stage) txtUser.getScene().getWindow();
+        stage.close();
+        System.exit(0);
+    }
 }

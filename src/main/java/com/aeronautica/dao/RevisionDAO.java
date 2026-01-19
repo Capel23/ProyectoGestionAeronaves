@@ -91,6 +91,19 @@ public class RevisionDAO extends GenericDAO<Revision> {
         }
     }
 
+    @Override
+    public List<Revision> findAll() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Revision> query = session.createQuery(
+                "SELECT r FROM Revision r " +
+                "LEFT JOIN FETCH r.aeronave " +
+                "LEFT JOIN FETCH r.mecanico " +
+                "ORDER BY r.fechaRevision DESC", 
+                Revision.class);
+            return query.list();
+        }
+    }
+
     public List<Revision> buscarRecientes(int dias) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             LocalDateTime fechaLimite = LocalDateTime.now().minusDays(dias);

@@ -1,0 +1,22 @@
+{
+  "estadisticas" : {
+    "piezasBajoStock" : 0,
+    "piezasAgotadas" : 0,
+    "stockTotal" : 100
+  },
+  "metadata" : {
+    "sistema" : "Sistema de Gestión Aeronáutica",
+    "fechaGeneracion" : "2026-01-19T21:40:54.372316",
+    "totalPiezas" : 1,
+    "version" : "1.0"
+  },
+  "alertas" : {
+    "requierenReabastecimiento" : [ ]
+  },
+  "piezas" : [ {
+    "id" : 1,
+    "codigo" : "tornillos",
+    "descripcion" : "muchos",
+    "stock" : 100
+  } ]
+}

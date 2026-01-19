@@ -11,6 +11,7 @@ import com.aeronautica.model.Aeronave;
 import com.aeronautica.model.Mecanico;
 import com.aeronautica.model.Pieza;
 import com.aeronautica.model.Revision;
+import com.aeronautica.model.Rol;
 import com.aeronautica.model.Usuario;
 import com.aeronautica.service.AeronaveService;
 import com.aeronautica.service.MecanicoService;
@@ -24,13 +25,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MainController {
 
+    // Tabs
+    @FXML private Tab tabAeronaves;
+    @FXML private Tab tabMecanicos;
+    @FXML private Tab tabPiezas;
+    @FXML private Tab tabRevisiones;
+
+    // Tables
     @FXML private TableView<Aeronave> tableAeronaves;
     @FXML private TableColumn<Aeronave, Long> colId;
     @FXML private TableColumn<Aeronave, String> colMatricula;
@@ -71,6 +91,27 @@ public class MainController {
     @FXML private Label lblStockBajo;
     @FXML private Label lblTotalRevisiones;
 
+    // Botones Aeronaves
+    @FXML private Button btnNuevaAeronave;
+    @FXML private Button btnEditarAeronave;
+    @FXML private Button btnEliminarAeronave;
+
+    // Botones Mecánicos
+    @FXML private Button btnNuevoMecanico;
+    @FXML private Button btnEditarMecanico;
+    @FXML private Button btnEliminarMecanico;
+
+    // Botones Piezas
+    @FXML private Button btnNuevaPieza;
+    @FXML private Button btnEditarPieza;
+    @FXML private Button btnEliminarPieza;
+    @FXML private Button btnGenerarJSON;
+
+    // Botones Revisiones
+    @FXML private Button btnNuevaRevision;
+    @FXML private Button btnEliminarRevision;
+    @FXML private Button btnGenerarCertificado;
+
     private final AeronaveService aeronaveService = new AeronaveService();
     private final MecanicoService mecanicoService = new MecanicoService();
     private final PiezaService piezaService = new PiezaService();
@@ -80,9 +121,60 @@ public class MainController {
     private ObservableList<Mecanico> listaMecanicos;
     private ObservableList<Pieza> listaPiezas;
     private ObservableList<Revision> listaRevisiones;
+    
+    private Usuario usuarioActual;
 
     public void setUsuario(Usuario usuario) {
+        this.usuarioActual = usuario;
         lblUsuario.setText("👤 " + usuario.getUsername() + " (" + usuario.getRol() + ")");
+        configurarPermisosPorRol(usuario.getRol());
+    }
+
+    private void configurarPermisosPorRol(Rol rol) {
+        switch (rol) {
+            case ADMIN:
+                // Admin tiene todos los permisos (todo activado por defecto)
+                break;
+                
+            case MECANICO:
+                // Mecánico solo puede ver y editar piezas y revisiones
+                // Deshabilitar pestañas de aeronaves y mecánicos
+                tabAeronaves.setDisable(true);
+                tabMecanicos.setDisable(true);
+                
+                // Piezas: permitir ver, crear y editar (no eliminar)
+                btnEliminarPieza.setDisable(true);
+                
+                // Revisiones: permitir ver, crear y editar (no eliminar)
+                btnEliminarRevision.setDisable(true);
+                break;
+                
+            case PILOTO:
+                // Piloto solo puede ver, sin editar nada
+                // Deshabilitar todos los botones de acción
+                
+                // Aeronaves
+                btnNuevaAeronave.setDisable(true);
+                btnEditarAeronave.setDisable(true);
+                btnEliminarAeronave.setDisable(true);
+                
+                // Mecánicos
+                btnNuevoMecanico.setDisable(true);
+                btnEditarMecanico.setDisable(true);
+                btnEliminarMecanico.setDisable(true);
+                
+                // Piezas
+                btnNuevaPieza.setDisable(true);
+                btnEditarPieza.setDisable(true);
+                btnEliminarPieza.setDisable(true);
+                btnGenerarJSON.setDisable(true);
+                
+                // Revisiones
+                btnNuevaRevision.setDisable(true);
+                btnEliminarRevision.setDisable(true);
+                btnGenerarCertificado.setDisable(true);
+                break;
+        }
     }
 
     @FXML
@@ -743,9 +835,24 @@ public class MainController {
 
         Optional<Revision> resultado = dialog.showAndWait();
         resultado.ifPresent(revision -> {
-            revisionService.guardar(revision);
-            refrescarRevisiones();
-            mostrarInfo("Éxito", "Revisión registrada correctamente");
+            try {
+                System.out.println("Guardando revisión...");
+                System.out.println("Aeronave: " + (revision.getAeronave() != null ? revision.getAeronave().getMatricula() : "NULL"));
+                System.out.println("Mecánico: " + (revision.getMecanico() != null ? revision.getMecanico().getNombre() : "NULL"));
+                
+                revisionService.guardar(revision);
+                System.out.println("Revisión guardada, refrescando tabla...");
+                
+                // Forzar refresco completo
+                refrescarRevisiones();
+                
+                System.out.println("Tabla refrescada. Total revisiones: " + listaRevisiones.size());
+                mostrarInfo("Éxito", "Revisión registrada correctamente");
+            } catch (Exception e) {
+                System.err.println("Error al guardar revisión: " + e.getMessage());
+                mostrarError("Error", "No se pudo guardar la revisión: " + e.getMessage());
+                e.printStackTrace();
+            }
         });
     }
 
