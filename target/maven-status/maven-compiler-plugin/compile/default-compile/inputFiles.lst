@@ -1,9 +1,11 @@
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\model\Revision.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\dao\GenericDAO.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\model\Pieza.java
+C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\service\MecanicoService.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\controller\MainController.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\dao\MecanicoDAO.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\util\CertificadoAeronavegabilidadXMLGenerator.java
+C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\service\PiezaService.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\service\UsuarioService.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\config\HibernateUtil.java
 C:\Users\LuisC\Desktop\JustDoIt\new\ProyectoGestionAeronaves\src\main\java\com\aeronautica\dao\RevisionDAO.java

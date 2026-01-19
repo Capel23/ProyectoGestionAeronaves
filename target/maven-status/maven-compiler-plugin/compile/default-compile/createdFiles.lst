@@ -3,8 +3,10 @@ com\aeronautica\controller\MainController$1.class
 com\aeronautica\model\Usuario.class
 com\aeronautica\model\Pieza.class
 com\aeronautica\model\Rol.class
+com\aeronautica\controller\MainController$4.class
 com\aeronautica\model\Mecanico.class
 com\aeronautica\model\Revision.class
+com\aeronautica\controller\MainController$3.class
 com\aeronautica\controller\LoginController.class
 com\aeronautica\dao\MecanicoDAO.class
 com\aeronautica\dao\GenericDAO.class
@@ -13,6 +15,7 @@ com\aeronautica\dao\UsuarioDAO.class
 com\aeronautica\dao\PiezaDAO.class
 com\aeronautica\config\HibernateUtil.class
 com\aeronautica\MainApp.class
+com\aeronautica\service\MecanicoService.class
 com\aeronautica\service\AeronaveService.class
 com\aeronautica\model\Aeronave.class
 com\aeronautica\util\CertificadoAeronavegabilidadXMLGenerator.class
@@ -21,3 +24,5 @@ com\aeronautica\service\UsuarioService.class
 com\aeronautica\controller\MainController.class
 com\aeronautica\service\AuthService.class
 com\aeronautica\service\RevisionService.class
+com\aeronautica\service\PiezaService.class
+com\aeronautica\controller\MainController$2.class

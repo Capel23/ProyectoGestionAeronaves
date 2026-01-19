@@ -5,14 +5,37 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.aeronautica.dao.RevisionDAO;
 import com.aeronautica.model.Aeronave;
 import com.aeronautica.model.Revision;
 
 public class RevisionService {
 
+    private final RevisionDAO dao = new RevisionDAO();
+
     public static final double INTERVALO_REVISION_100H = 100.0;
     public static final double INTERVALO_REVISION_ANUAL = 8760.0;
-    public static final double TOLERANCIA_HORAS = 5.0; 
+    public static final double TOLERANCIA_HORAS = 5.0;
+
+    public void guardar(Revision r) {
+        dao.save(r);
+    }
+
+    public void actualizar(Revision r) {
+        dao.update(r);
+    }
+
+    public void eliminar(Revision r) {
+        dao.delete(r);
+    }
+
+    public List<Revision> listar() {
+        return dao.findAll();
+    }
+
+    public Revision buscarPorId(Long id) {
+        return dao.findById(id);
+    } 
 
     /**
      * Verifica si una aeronave requiere revisión basándose en las horas de vuelo.

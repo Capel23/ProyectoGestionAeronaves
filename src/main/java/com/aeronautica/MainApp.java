@@ -26,9 +26,6 @@ public class MainApp extends Application {
         primaryStage.show();
     }
     
-    /**
-     * Crea usuarios por defecto si no existen en la base de datos
-     */
     private void initializeUsers() {
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
