@@ -2,7 +2,6 @@
 
 Proyecto académico desarrollado en **Java 21** para gestionar el mantenimiento técnico de aeronaves, con soporte para registro de revisiones, control de piezas reemplazadas, generación de certificados de aeronavegabilidad y trazabilidad de responsables autorizados.
 
-> Asignatura: Programación  
 > Autor: Luis Capel Velázquez  
 > Entorno: Windows 11 | Java 21.0.8 | MySQL (XAMPP) | Hibernate ORM 6.6.1.Final | JavaFX
 
@@ -32,8 +31,6 @@ Proyecto académico desarrollado en **Java 21** para gestionar el mantenimiento 
 | Arquitectura | Capas: Vista, Controlador, Servicio, DAO, Modelo, Utilidades |
 | Pruebas | JUnit (pruebas unitarias) |
 | Gestión de Proyecto | Sin Maven (ejecución manual vía `java -cp`) |
-
-> **Nota**: Este proyecto **no usa Maven**, por lo que todas las dependencias (Hibernate, MySQL Connector, JavaFX) deben estar incluidas manualmente en la carpeta `lib/`.
 
 ---
 

@@ -1,36 +1,48 @@
 package com.aeronautica.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "mecanicos")
 public class Mecanico {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private StringProperty nombre;
-    private StringProperty especialidad;
-    private int horasTrabajadas;
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
 
-    public Mecanico() {
-        this.nombre = new SimpleStringProperty();
-        this.especialidad = new SimpleStringProperty();
+    @Column(name = "certificacion", nullable = false)
+    private String certificacion;
+
+    public Mecanico() {}
+
+    public Mecanico(String nombre, String certificacion) {
+        this.nombre = nombre;
+        this.certificacion = certificacion;
     }
 
-    public Mecanico(String nombre, String especialidad, int horasTrabajadas) {
-        this.nombre = new SimpleStringProperty(nombre);
-        this.especialidad = new SimpleStringProperty(especialidad);
-        this.horasTrabajadas = horasTrabajadas;
+    // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getCertificacion() { return certificacion; }
+    public void setCertificacion(String certificacion) { this.certificacion = certificacion; }
+
+    @Override
+    public String toString() {
+        return "Mecanico{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", certificacion='" + certificacion + '\'' +
+                '}';
     }
-
-    // Getters
-    public String getNombre() { return nombre.get(); }
-    public String getEspecialidad() { return especialidad.get(); }
-    public int getHorasTrabajadas() { return horasTrabajadas; }
-
-    // Setters
-    public void setNombre(String nombre) { this.nombre.set(nombre); }
-    public void setEspecialidad(String especialidad) { this.especialidad.set(especialidad); }
-    public void setHorasTrabajadas(int horasTrabajadas) { this.horasTrabajadas = horasTrabajadas; }
-
-    // Propiedades (para JavaFX)
-    public StringProperty nombreProperty() { return nombre; }
-    public StringProperty especialidadProperty() { return especialidad; }
 }

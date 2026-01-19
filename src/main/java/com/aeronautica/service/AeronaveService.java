@@ -1,9 +1,9 @@
 package com.aeronautica.service;
 
+import java.util.List;
+
 import com.aeronautica.dao.AeronaveDAO;
 import com.aeronautica.model.Aeronave;
-
-import java.util.List;
 
 public class AeronaveService {
 
@@ -18,6 +18,6 @@ public class AeronaveService {
     }
 
     public List<Aeronave> listar() {
-        return dao.listarTodas();
+        return dao.listarTodos();
     }
 }

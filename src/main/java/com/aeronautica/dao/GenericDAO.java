@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.aeronautica.config.HibernateUtil;
 
@@ -27,6 +28,10 @@ public class GenericDAO<T> {
         }
     }
 
+    public void guardar(T entity) {
+        save(entity);
+    }
+
     public void update(T entity) {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -39,16 +44,28 @@ public class GenericDAO<T> {
         }
     }
 
+    public void actualizar(T entity) {
+        update(entity);
+    }
+
     public T findById(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(entityClass, id);
         }
     }
 
+    public T buscarPorId(Long id) {
+        return findById(id);
+    }
+
     public List<T> findAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
         }
+    }
+
+    public List<T> listarTodos() {
+        return findAll();
     }
 
     public void delete(T entity) {
@@ -60,6 +77,19 @@ public class GenericDAO<T> {
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             System.err.println("Error deleting entity: " + e.getMessage());
+        }
+    }
+
+    public void eliminar(T entity) {
+        delete(entity);
+    }
+
+    public long contar() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Long> query = session.createQuery(
+                "SELECT COUNT(*) FROM " + entityClass.getSimpleName(), Long.class);
+            Long result = query.uniqueResult();
+            return result != null ? result : 0L;
         }
     }
 }
