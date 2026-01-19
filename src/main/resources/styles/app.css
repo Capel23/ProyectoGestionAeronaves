@@ -44,7 +44,7 @@
     -fx-background-color: linear-gradient(#1b6fd4, #165fb8);
 }
 .button:focused {
-    -fx-effect: dropshadow(energy, rgba(41,128,185,0.35), 6, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(41,128,185,0.35), 6, 0, 0, 2);
 }
 
 .table-view {

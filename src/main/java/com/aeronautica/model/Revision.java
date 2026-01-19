@@ -1,49 +1,108 @@
 package com.aeronautica.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "revisiones")
 public class Revision {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private StringProperty idRevision;
-    private StringProperty matriculaAeronave;
-    private LocalDate fecha;
-    private StringProperty tipoRevision;
-    private StringProperty observaciones;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "aeronave_id", nullable = false)
+    private Aeronave aeronave;
 
-    public Revision() {
-        this.idRevision = new SimpleStringProperty();
-        this.matriculaAeronave = new SimpleStringProperty();
-        this.tipoRevision = new SimpleStringProperty();
-        this.observaciones = new SimpleStringProperty();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "mecanico_id", nullable = false)
+    private Mecanico mecanico;
+
+    @Column(name = "fecha_revision")
+    private LocalDateTime fechaRevision;
+
+    @Column(name = "tipo_revision")
+    private String tipoRevision;
+
+    @Column(name = "horas_acumuladas")
+    private double horasAcumuladas;
+
+    @Column(name = "observaciones")
+    private String observaciones;
+
+    @Column(name = "firmado_jefe")
+    private boolean firmadoJefe;
+
+    @ManyToMany
+    @JoinTable(
+        name = "revision_piezas",
+        joinColumns = @JoinColumn(name = "revision_id"),
+        inverseJoinColumns = @JoinColumn(name = "pieza_id")
+    )
+    private List<Pieza> piezasReemplazadas;
+
+    public Revision() {}
+
+    public Revision(Aeronave aeronave, Mecanico mecanico, String tipoRevision, double horasAcumuladas, String observaciones) {
+        this.aeronave = aeronave;
+        this.mecanico = mecanico;
+        this.fechaRevision = LocalDateTime.now();
+        this.tipoRevision = tipoRevision;
+        this.horasAcumuladas = horasAcumuladas;
+        this.observaciones = observaciones;
+        this.firmadoJefe = false;
     }
 
-    public Revision(String idRevision, String matriculaAeronave, LocalDate fecha, String tipoRevision, String observaciones) {
-        this.idRevision = new SimpleStringProperty(idRevision);
-        this.matriculaAeronave = new SimpleStringProperty(matriculaAeronave);
-        this.fecha = fecha;
-        this.tipoRevision = new SimpleStringProperty(tipoRevision);
-        this.observaciones = new SimpleStringProperty(observaciones);
+    // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Aeronave getAeronave() { return aeronave; }
+    public void setAeronave(Aeronave aeronave) { this.aeronave = aeronave; }
+
+    public Mecanico getMecanico() { return mecanico; }
+    public void setMecanico(Mecanico mecanico) { this.mecanico = mecanico; }
+
+    public LocalDateTime getFechaRevision() { return fechaRevision; }
+    public void setFechaRevision(LocalDateTime fechaRevision) { this.fechaRevision = fechaRevision; }
+
+    public String getTipoRevision() { return tipoRevision; }
+    public void setTipoRevision(String tipoRevision) { this.tipoRevision = tipoRevision; }
+
+    public double getHorasAcumuladas() { return horasAcumuladas; }
+    public void setHorasAcumuladas(double horasAcumuladas) { this.horasAcumuladas = horasAcumuladas; }
+
+    public String getObservaciones() { return observaciones; }
+    public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
+
+    public boolean isFirmadoJefe() { return firmadoJefe; }
+    public void setFirmadoJefe(boolean firmadoJefe) { this.firmadoJefe = firmadoJefe; }
+
+    public List<Pieza> getPiezasReemplazadas() { return piezasReemplazadas; }
+    public void setPiezasReemplazadas(List<Pieza> piezasReemplazadas) { this.piezasReemplazadas = piezasReemplazadas; }
+
+    @Override
+    public String toString() {
+        return "Revision{" +
+                "id=" + id +
+                ", aeronave=" + aeronave.getMatricula() +
+                ", mecanico=" + mecanico.getNombre() +
+                ", fecha=" + fechaRevision +
+                ", tipo='" + tipoRevision + '\'' +
+                ", horas=" + horasAcumuladas +
+                ", firmado=" + firmadoJefe +
+                '}';
     }
-
-    // Getters
-    public String getIdRevision() { return idRevision.get(); }
-    public String getMatriculaAeronave() { return matriculaAeronave.get(); }
-    public LocalDate getFecha() { return fecha; }
-    public String getTipoRevision() { return tipoRevision.get(); }
-    public String getObservaciones() { return observaciones.get(); }
-
-    // Setters
-    public void setIdRevision(String idRevision) { this.idRevision.set(idRevision); }
-    public void setMatriculaAeronave(String matriculaAeronave) { this.matriculaAeronave.set(matriculaAeronave); }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
-    public void setTipoRevision(String tipoRevision) { this.tipoRevision.set(tipoRevision); }
-    public void setObservaciones(String observaciones) { this.observaciones.set(observaciones); }
-
-    // Propiedades
-    public StringProperty idRevisionProperty() { return idRevision; }
-    public StringProperty matriculaAeronaveProperty() { return matriculaAeronave; }
-    public StringProperty tipoRevisionProperty() { return tipoRevision; }
-    public StringProperty observacionesProperty() { return observaciones; }
 }

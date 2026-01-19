@@ -30,7 +30,6 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        // Permitir pulsar Enter en el password
         txtPass.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 login(new ActionEvent(txtPass, null));
@@ -43,16 +42,21 @@ public class LoginController {
         try {
             String user = txtUser.getText();
             String pass = txtPass.getText();
+            
+            System.out.println("Intentando login con usuario: " + user);
 
             Usuario usuario = authService.login(user, pass);
 
             if (usuario != null) {
+                System.out.println("Login exitoso! Usuario: " + usuario.getUsername() + ", Rol: " + usuario.getRol());
                 cargarPantallaPrincipal(usuario);
             } else {
+                System.out.println("Login fallido: usuario o contraseña incorrectos");
                 lblError.setText("Usuario o contraseña incorrectos");
             }
         } catch (Exception e) {
             lblError.setText("Error de conexión con la base de datos");
+            System.err.println("Error en login: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -61,7 +65,6 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(loader.load());
 
-        // Pasamos el usuario al MainController para control de roles
         MainController controller = loader.getController();
         controller.setUsuario(usuario);
 

@@ -5,38 +5,29 @@
 
 <hibernate-configuration>
     <session-factory>
+        <!-- Database connection settings - H2 Database (archivo) -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:file:./aeronautica_db;DB_CLOSE_DELAY=-1</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password"></property>
 
-        <!-- Conexión a MySQL -->
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3307/aeronautica_db?useSSL=false&serverTimezone=UTC
-        </property>
+        <!-- JDBC connection pool -->
+        <property name="connection.pool_size">1</property>
 
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"> </property>
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
-        <!-- Dialecto -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
 
-        <!-- Mostrar SQL en consola -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+        <!-- Update database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
 
-        <!-- Gestión de esquema -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
-        <!-- <property name="hibernate.hbm2ddl.auto">update</property>  -->
-
-
-         <!-- Caching opcional -->
-        <property name="hibernate.cache.use_second_level_cache">false</property>
-
-        <!-- Entidades -->
+        <!-- Mapping classes -->
         <mapping class="com.aeronautica.model.Aeronave"/>
         <mapping class="com.aeronautica.model.Mecanico"/>
         <mapping class="com.aeronautica.model.Pieza"/>
         <mapping class="com.aeronautica.model.Revision"/>
         <mapping class="com.aeronautica.model.Usuario"/>
-
-
     </session-factory>
 </hibernate-configuration>

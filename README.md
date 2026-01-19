@@ -2,7 +2,6 @@
 
 Proyecto académico desarrollado en **Java 21** para gestionar el mantenimiento técnico de aeronaves, con soporte para registro de revisiones, control de piezas reemplazadas, generación de certificados de aeronavegabilidad y trazabilidad de responsables autorizados.
 
-> Asignatura: Programación  
 > Autor: Luis Capel Velázquez  
 > Entorno: Windows 11 | Java 21.0.8 | MySQL (XAMPP) | Hibernate ORM 6.6.1.Final | JavaFX
 
@@ -23,17 +22,6 @@ Proyecto académico desarrollado en **Java 21** para gestionar el mantenimiento 
 ># Aeronautica Maintenance System
 
 Sistema de gestión de aeronaves desarrollado en **Java** con **JavaFX** y **Hibernate**, conectado a **MySQL**.
-
----
-
-## 🏁 Cómo ejecutar el proyecto
-
-### 1. Requisitos previos
-- **Java 21** (JDK)
-- **Maven**
-- **MySQL 8**
-- IDE recomendado: **IntelliJ IDEA**, **Eclipse** o cualquier editor compatible con Maven/JavaFX.
-- MySQL Workbench u otro cliente MySQL para crear la base de datos.
 
 ---
 

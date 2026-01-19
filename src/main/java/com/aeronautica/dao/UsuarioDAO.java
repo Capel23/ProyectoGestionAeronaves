@@ -1,8 +1,9 @@
 package com.aeronautica.dao;
 
-import com.aeronautica.model.Usuario;
-import com.aeronautica.config.HibernateUtil;
 import org.hibernate.Session;
+
+import com.aeronautica.config.HibernateUtil;
+import com.aeronautica.model.Usuario;
 
 public class UsuarioDAO {
 
@@ -17,7 +18,7 @@ public class UsuarioDAO {
     public void guardar(Usuario usuario) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.saveOrUpdate(usuario);
+            session.merge(usuario);
             session.getTransaction().commit();
         }
     }

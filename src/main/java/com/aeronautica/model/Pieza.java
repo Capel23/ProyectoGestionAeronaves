@@ -1,36 +1,56 @@
 package com.aeronautica.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "piezas")
 public class Pieza {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private StringProperty codigo;
-    private StringProperty nombre;
-    private int cantidad;
+    @Column(name = "codigo", unique = true, nullable = false)
+    private String codigo;
 
-    public Pieza() {
-        this.codigo = new SimpleStringProperty();
-        this.nombre = new SimpleStringProperty();
+    @Column(name = "descripcion")
+    private String descripcion;
+
+    @Column(name = "stock")
+    private int stock;
+
+    public Pieza() {}
+
+    public Pieza(String codigo, String descripcion, int stock) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.stock = stock;
     }
 
-    public Pieza(String codigo, String nombre, int cantidad) {
-        this.codigo = new SimpleStringProperty(codigo);
-        this.nombre = new SimpleStringProperty(nombre);
-        this.cantidad = cantidad;
+    // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getCodigo() { return codigo; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
+
+    @Override
+    public String toString() {
+        return "Pieza{" +
+                "id=" + id +
+                ", codigo='" + codigo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", stock=" + stock +
+                '}';
     }
-
-    // Getters
-    public String getCodigo() { return codigo.get(); }
-    public String getNombre() { return nombre.get(); }
-    public int getCantidad() { return cantidad; }
-
-    // Setters
-    public void setCodigo(String codigo) { this.codigo.set(codigo); }
-    public void setNombre(String nombre) { this.nombre.set(nombre); }
-    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
-
-    // Propiedades
-    public StringProperty codigoProperty() { return codigo; }
-    public StringProperty nombreProperty() { return nombre; }
 }

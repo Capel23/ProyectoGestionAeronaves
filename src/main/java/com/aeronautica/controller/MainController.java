@@ -3,11 +3,12 @@ package com.aeronautica.controller;
 import com.aeronautica.model.Aeronave;
 import com.aeronautica.model.Usuario;
 import com.aeronautica.service.AeronaveService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class MainController {
 
@@ -20,15 +21,13 @@ public class MainController {
     @FXML
     private TableColumn<Aeronave, String> colEstado;
 
-    @FXML
-    private TextField txtMatricula, txtModelo, txtEstado;
-
-    private AeronaveService service = new AeronaveService();
+    private final AeronaveService service = new AeronaveService();
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-        aplicarPermisos();
+        System.out.println("Usuario establecido: " + usuario.getUsername() + ", Rol: " + usuario.getRol());
+        // No es necesario aplicar permisos aquí ya que la tabla es solo de lectura por ahora
     }
 
     @FXML
@@ -38,25 +37,6 @@ public class MainController {
         colEstado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEstado()));
 
         refrescarTabla();
-
-        tableAeronaves.setOnMouseClicked(this::cargarSeleccion);
-    }
-
-    private void aplicarPermisos() {
-        // Ejemplo: pilotos no pueden editar aeronaves
-        boolean editable = usuario.getRol().name().equals("ADMIN") || usuario.getRol().name().equals("MECANICO");
-        txtMatricula.setDisable(!editable);
-        txtModelo.setDisable(!editable);
-        txtEstado.setDisable(!editable);
-    }
-
-    private void cargarSeleccion(MouseEvent event) {
-        Aeronave sel = tableAeronaves.getSelectionModel().getSelectedItem();
-        if (sel != null) {
-            txtMatricula.setText(sel.getMatricula());
-            txtModelo.setText(sel.getModelo());
-            txtEstado.setText(sel.getEstado());
-        }
     }
 
     @FXML
@@ -67,10 +47,7 @@ public class MainController {
 
     @FXML
     private void guardarAeronave() {
-        Aeronave a = new Aeronave(txtMatricula.getText(), txtModelo.getText(), txtEstado.getText());
-        service.guardar(a);
-        refrescarTabla();
-        limpiarCampos();
+        System.out.println("Función guardar aeronave - Por implementar");
     }
 
     @FXML
@@ -79,13 +56,6 @@ public class MainController {
         if (sel != null) {
             service.eliminar(sel);
             refrescarTabla();
-            limpiarCampos();
         }
-    }
-
-    private void limpiarCampos() {
-        txtMatricula.clear();
-        txtModelo.clear();
-        txtEstado.clear();
     }
 }
