@@ -1,11 +1,11 @@
 com\aeronautica\dao\RevisionDAO.class
+com\aeronautica\controller\MainController$1.class
 com\aeronautica\model\Usuario.class
 com\aeronautica\model\Pieza.class
 com\aeronautica\model\Rol.class
 com\aeronautica\model\Mecanico.class
 com\aeronautica\model\Revision.class
 com\aeronautica\controller\LoginController.class
-com\aeronautica\DemoApp.class
 com\aeronautica\dao\MecanicoDAO.class
 com\aeronautica\dao\GenericDAO.class
 com\aeronautica\util\InventarioPiezasJSONGenerator.class
